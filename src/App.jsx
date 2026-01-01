@@ -15,6 +15,7 @@ import AuthLock from './components/AuthLock';
 import KasaWindow from './components/KasaWindow';
 import PrinterWindow from './components/PrinterWindow';
 import SettingsWindow from './components/SettingsWindow';
+import HomePage from './components/HomePage';
 
 
 
@@ -60,6 +61,7 @@ function App() {
     const [showPrinterWindow, setShowPrinterWindow] = useState(false);
     const [showCadWindow, setShowCadWindow] = useState(false);
     const [showBrowserWindow, setShowBrowserWindow] = useState(false);
+    const [showHome, setShowHome] = useState(true);
 
     // Printing workflow status (for top toolbar display)
     const [slicingStatus, setSlicingStatus] = useState({ active: false, percent: 0, message: '' });
@@ -1340,7 +1342,20 @@ function App() {
         setShowPrinterWindow(!showPrinterWindow);
     };
 
-
+    if (showHome) {
+        return (
+            <HomePage
+                onLaunch={() => setShowHome(false)}
+                status={status}
+                isConnected={isConnected}
+                socketConnected={socketConnected}
+                isAuthenticated={isAuthenticated}
+                isVideoOn={isVideoOn}
+                isMuted={isMuted}
+                kasaDeviceCount={kasaDevices.length}
+            />
+        );
+    }
 
     return (
         <div className="h-screen w-screen bg-black text-cyan-100 font-mono overflow-hidden flex flex-col relative selection:bg-cyan-900 selection:text-white">

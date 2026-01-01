@@ -54,7 +54,6 @@ signal.signal(signal.SIGTERM, signal_handler)
 audio_loop = None
 loop_task = None
 authenticator = None
-kasa_agent = KasaAgent()
 SETTINGS_FILE = "settings.json"
 
 DEFAULT_SETTINGS = {
